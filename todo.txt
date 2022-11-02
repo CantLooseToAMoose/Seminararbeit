@@ -1,0 +1,14 @@
+TODO:
+
+pixelmap fertig machen(environment)
+
+
+
+
+Fragestellung:
+mapless navigation
+
+wie erinnert sich der agent
+
+sequentielles lernen
+

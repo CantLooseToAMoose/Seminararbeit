@@ -33,9 +33,7 @@ run = True
 
 # initialize screen and robot
 pygame.init()
-
 screen = pygame.display.set_mode(screen_size,flags=pygame.FULLSCREEN)
-
 robot = pygame.image.load("robot_3Dblue.png")
 robot = pygame.transform.scale(robot, robot_size)
 robot_rect = robot.get_rect()
