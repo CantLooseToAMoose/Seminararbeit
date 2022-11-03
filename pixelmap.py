@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pygame
+import Viewer
+
 
 
 class Pixelmap:
@@ -43,21 +45,3 @@ class Pixelmap:
                 for k in range(self.scale_factor):
                     for l in range(self.scale_factor):
                         self.screen_pixel_array[i+k,j+l]=self.pixel_array[i,j]
-
-
-
-
-    def plot_map(self):
-        pygame.init()
-        screen = pygame.display.set_mode((self.width*self.scale_factor, self.heigth*self.scale_factor))
-        screen.fill((255, 255, 255))
-        black = screen.map_rgb((0, 0, 0))
-        white=screen.map_rgb((255,255,255))
-        self.pixel_array_to_screen_pixel_array()
-        surf = pygame.surfarray.make_surface(self.screen_pixel_array)
-
-        while self.run:
-            # check if game is closed
-            self.quit_game()
-            screen.blit(surf, (0, 0))
-            pygame.display.update()
