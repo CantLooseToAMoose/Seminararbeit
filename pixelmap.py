@@ -36,4 +36,5 @@ class Pixelmap:
             for j in range(self.width):
                 for k in range(self.scale_factor):
                     for l in range(self.scale_factor):
-                        self.numpy_pixel_array[i + k, j + l] = self.numpy_array[i, j]
+                        self.numpy_pixel_array[i * self.scale_factor + k, j * self.scale_factor + l] = self.numpy_array[
+                            i, j]

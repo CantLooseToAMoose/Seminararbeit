@@ -1,8 +1,11 @@
 import numpy as np
+
+import Viewer
 from pixelmap import Pixelmap
 
 
 class Environment:
+    agent_index = 2
 
     def __init__(self, pixelmap: Pixelmap):
         self.vision_size = None
@@ -30,7 +33,7 @@ class Environment:
 
     def check_if_movement_is_valid(self, input):
         position_to_check = self.agent_pos + input
-        if self.numpy_array[position_to_check] == 0:
+        if self.numpy_array[position_to_check[0], position_to_check[1]] == 0:
             return True
         else:
             return False
@@ -47,10 +50,19 @@ class Environment:
 
         return self.numpy_array[self.agent_pos[0] - self.vision_size:self.agent_pos[0] + self.vision_size,
                self.agent_pos[1] - self.vision_size:self.agent_pos[
-                                                        1] + self.vision_size], self.reward_function(), self.reached_destination()
+                                                        1] + self.vision_size]
 
     def view_update_function(self):
-        return 1
+        scale = self.pixelmap.scale_factor
+        screen_array = self.pixelmap.numpy_pixel_array.copy()
+        for i in range(scale):
+            for j in range(scale):
+                screen_array[self.agent_pos[0] * scale + i, self.agent_pos[1] * scale + j] = Environment.agent_index
+        return screen_array
 
     def show_environment(self):
-        return 1
+        screen_size = (
+            self.pixelmap.heigth * self.pixelmap.scale_factor, self.pixelmap.heigth * self.pixelmap.scale_factor)
+        self.view = Viewer.Viewer(self.view_update_function, screen_size)
+        self.pixelmap.pixel_array_to_screen_pixel_array()
+        self.view.start()
