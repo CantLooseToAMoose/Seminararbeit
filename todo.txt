@@ -1,6 +1,68 @@
+Struktur fuer die Seminarbeit:
+
+
+Einleitung*
+-Motivation
+-Ueberblick/Problemstellung
+-Loesungansatz
+-Was wurde gemacht(wichtige Punkte)/Inhaltsverzeichnis
+-sollte in sich geschlossen sein-
+
+
+Fragestellung(optional)*
+-Wie kriegen wir das problem geloest
+-Konkret, welche methoden
+
+
+Background(Konzepte)
+-selbsterklaerend
+-kurz halten(dafuer ist in der Bachelorarbeit mehr platz vorgesehen)
+-was benutze ich dafuer
+
+
+State of the Art*
+-selbsterklaerend
+-kurz halten(dafuer ist in der Bachelorarbeit mehr platz vorgesehen)
+-was wird aktuell gemacht in diesem bereich
+-schnittmenge reinforcement learning, indoor positionierung, wurde !genau! dieses problem schonmal untersucht
+- wenn nicht bereits untersucht, wo sind die unterschiede?
+
+Methodology
+-Vorgehensweise, getrennt von der eigentlichen Implementierung(keine details, keine libraries etc.)
+-viele unterkapitel
+-(Hauptarbeit)
+-wird vorraussichtlich in der Bachelorarbeit erweitert
+
+
+Implementation
+-alles ausserhalb der methodology
+-wie habe ich die sachen umgesetzt
+-Aufbau
+-probleme in der implementierung
+-warum welche Entscheidungen
+-nach spannendem Filtern
+
+Evaluation
+-in diesem Fall preliminaries, Fokus auf die Bachelorarbeit(Future Work)
+-vergleiche innerhalb der versch. Szenarien
+
+
+Conclusion/Outlook/Future Work
+-was koennte darauf aufbauend in der Bachelorarbeit passieren
+-Unity als Simulationsumgebung/Warum ist das interessant
+
+
+
+*Sollte fuer das naechste Treffen relativ weit ausgearbeitet sein
+
+
 TODO:
 
-pixelmap fertig machen(environment)
+
+
+
+Zotero-Plugin:
+BetterBibTex
 
 
 
@@ -8,7 +70,13 @@ pixelmap fertig machen(environment)
 Fragestellung:
 mapless navigation
 
-wie erinnert sich der agent
+wie erinnert sich der agent - sequentielles lernen
 
-sequentielles lernen
 
+
+-Future:
+
+
+Szenarien:
+Baseline - Positionierung bei jedem Step ohne Noise
+Advanced - Positionierung bei jedem Step mit Noise - Positionierung diskret mit Noise (Variabler Noise)

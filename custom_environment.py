@@ -16,11 +16,12 @@ class Environment:
         self.view = None
         self.pixelmap = pixelmap
 
-    def initialize_environment(self, start_pos: (int, int), goal: (int, int), vision_size):
+    def initialize_environment(self, start_pos: (int, int), goal: (int, int), vision_size,reward_function):
         self.numpy_array = self.pixelmap.numpy_array
         self.initialize_agent(start_pos)
         self.initialize_goal(goal)
         self.vision_size = vision_size
+        self.set_reward_function(reward_function)
 
     def initialize_agent(self, start_pos: (int, int)):
         self.agent_pos = start_pos
