@@ -2,17 +2,18 @@ import tensorflow as tf
 from tensorflow import keras
 
 
-def get_CNN_DNN_model(filters_cnn,kernels_cnn,strides_cnn, layers_dnn, input_shape,number_of_outputs):
-    model=keras.models.Sequential()
+def get_CNN_DNN_model(filters_cnn, kernels_cnn, strides_cnn, layers_dnn, input_shape_cnn, input_shape_concat,
+                      number_of_outputs):
+    input_cnn = keras.layers.Input(shape=input_shape_cnn)
+    cnn = keras.layers.Conv2D(filters=filters_cnn[0], kernel_size=kernels_cnn[0], strides=strides_cnn[0])(input_cnn)
     for i in range(len(filters_cnn)):
-        if i==0:
-            model.add(keras.layers.Conv2D(filters=filters_cnn[i],kernel_size=kernels_cnn[i],strides=strides_cnn[i],input_shape=input_shape))
-        else:
-            model.add(keras.layers.Conv2D(filters=filters_cnn[i], kernel_size=kernels_cnn[i], strides=strides_cnn[i]))
-
-    model.add(keras.layers.Dropout(0.5))
-    model.add(keras.layers.Flatten())
+        if i != 0:
+            cnn = keras.layers.Conv2D(filters=filters_cnn[i], kernel_size=kernels_cnn[i], strides=strides_cnn[i])(cnn)
+    cnn = keras.layers.Flatten()(cnn)
+    input_concat = keras.layers.Input(input_shape_concat)
+    concat = keras.layers.Concatenate()([cnn, input_concat])
     for i in range(len(layers_dnn)):
-        model.add(keras.layers.Dense(layers_dnn[i],activation="relu"))
-    model.add(keras.layers.Dense(number_of_outputs, activation=keras.activations.softmax))
-
+        concat = keras.layers.Dense(units=layers_dnn[i], activation="relu")(concat)
+    concat = keras.layers.Dense(number_of_outputs, activation=keras.activations.softmax)(concat)
+    model = keras.Model(inputs=[input_cnn, input_concat], outputs=[concat])
+    return model
