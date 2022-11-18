@@ -38,3 +38,7 @@ class Pixelmap:
                     for l in range(self.scale_factor):
                         self.numpy_pixel_array[i * self.scale_factor + k, j * self.scale_factor + l] = self.numpy_array[
                             i, j]
+
+    def show_pixelmap(self):
+        plt.imshow(self.numpy_array)
+        plt.show()
