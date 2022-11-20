@@ -4,5 +4,5 @@ class BFSNode:
         self.neighbours = list()
         self.pos = pos
 
-    def add_neighbour(self,node):
+    def add_neighbour(self, node):
         self.neighbours.append(node)

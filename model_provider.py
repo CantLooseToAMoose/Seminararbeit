@@ -17,3 +17,13 @@ def get_CNN_DNN_model(filters_cnn, kernels_cnn, strides_cnn, layers_dnn, input_s
     concat = keras.layers.Dense(number_of_outputs, activation=keras.activations.softmax)(concat)
     model = keras.Model(inputs=[input_cnn, input_concat], outputs=[concat])
     return model
+
+
+def save_model(model, name):
+    pathname = "models/"
+    model.save(pathname + name)
+
+
+def load_model(name):
+    pathname = "models/"
+    return keras.models.load_model(pathname + name)

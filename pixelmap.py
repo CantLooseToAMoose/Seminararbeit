@@ -40,5 +40,5 @@ class Pixelmap:
                             i, j]
 
     def show_pixelmap(self):
-        plt.imshow(self.numpy_array)
+        plt.imshow(self.numpy_array.T)
         plt.show()

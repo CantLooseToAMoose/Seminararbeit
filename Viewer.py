@@ -36,6 +36,7 @@ class MyVisualizerThread (threading.Thread):
             surf.set_palette_at(0,(255,255,255))
             surf.set_palette_at(1,(0,0,0))
             surf.set_palette_at(2,(250,5,5))
+            surf.set_palette_at(3,(3,200,3))
             self.view.display.blit(surf, (0, 0))
             pygame.display.update()
 

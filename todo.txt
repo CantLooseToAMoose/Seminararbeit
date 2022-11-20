@@ -58,11 +58,15 @@ Conclusion/Outlook/Future Work
 
 TODO:
 
+-Zotero-Plugin:
+    BetterBibTex(wie kann man nochmal exportieren)
 
+-required-steps-rewardfunction
 
-
-Zotero-Plugin:
-BetterBibTex
+-test cases
+    metriken:
+        wie anzahl an schritten zum ziel
+        wieviele iterationen beim testen
 
 
 
