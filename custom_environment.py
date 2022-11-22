@@ -1,5 +1,6 @@
 import numpy as np
 
+import BreadthFirstSearch
 import Viewer
 from pixelmap import Pixelmap
 from BreadthFirstSearch import BFSNode
@@ -71,7 +72,7 @@ class Environment:
     def steps_reward_function(self, input):
         return -1
 
-    def steps_to_goal_reward_function(self, input):
+    def reduce_steps_to_goal_reward_function(self, input):
         return 1
 
     # Breadth first search for shortest way to Goal
@@ -92,7 +93,14 @@ class Environment:
                     for neighbour in neighbours:
                         if self.check_if_position_is_moveable((i, j) + neighbour):
                             node_array[i][j].add_neighbour(node_array[i + neighbour[0]][j + neighbour[1]])
-            # WIP
+            # Now fill the steps to goal array with the actual number of steps to the goal at this point
+            self.steps_to_goal_array = np.ones((len(self.numpy_array), len(self.numpy_array[0])))
+            for i in range(len(self.numpy_array)):
+                for j in range(len(self.numpy_array[0])):
+                    BreadthFirstSearch.reset_list_of_list_of_nodes_previous(node_array)
+                    path = BreadthFirstSearch.breadth_first_search(node_array, (i, j), self.goal)
+                    self.steps_to_goal_array[i, j] = len(path)
+        return self.steps_to_goal_array[pos[0], pos[1]]
 
     def check_if_position_is_moveable(self, position_to_check):
         if len(self.numpy_array) <= position_to_check[0] or position_to_check[0] < 0 or position_to_check[1] < 0 or len(
