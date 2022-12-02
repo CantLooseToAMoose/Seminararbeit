@@ -73,12 +73,19 @@ class Environment:
         return -1
 
     def reduce_steps_to_goal_reward_function(self, input):
-        return 1
+        dist_1 = self.steps_to_goal(self.agent_pos)
+        dist_2 = self.steps_to_goal(np.add(self.agent_pos, input))
+        if dist_2 == dist_1:
+            return -1
+        if dist_2 < dist_1:
+            return 0
+        if dist_2 > dist_1:
+            return -2
 
     # Breadth first search for shortest way to Goal
     def steps_to_goal(self, pos):
         # If this is the first time the algorithm runs I want to create an array with the number of steps required to reach the goal
-        if (self.steps_to_goal_array == None):
+        if (self.steps_to_goal_array is None):
             # Create array by use of Breadth First Search Algorithm
             # First Create an "array" of nodes
             node_array = list()
@@ -87,11 +94,11 @@ class Environment:
                 for j in range(len(self.numpy_array[0])):
                     node_array[i].append(BFSNode(pos=(i, j)))
             # Then add nodes as neigbours
-            for i in range(len(self.numpy_array)):
-                for j in range(len(self.numpy_array[0])):
+            for i in range(0, len(self.numpy_array)):
+                for j in range(0, len(self.numpy_array[0])):
                     neighbours = [(-1, 0), (1, 0), (0, 1), (0, -1)]
                     for neighbour in neighbours:
-                        if self.check_if_position_is_moveable((i, j) + neighbour):
+                        if self.check_if_position_is_moveable((i + neighbour[0], j + neighbour[1])):
                             node_array[i][j].add_neighbour(node_array[i + neighbour[0]][j + neighbour[1]])
             # Now fill the steps to goal array with the actual number of steps to the goal at this point
             self.steps_to_goal_array = np.ones((len(self.numpy_array), len(self.numpy_array[0])))

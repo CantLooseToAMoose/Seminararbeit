@@ -80,6 +80,7 @@ def start_training(env, model, n_iterations=150, n_episodes_per_update=10, n_max
             all_mean_grads.append(mean_grads)
         print("Apply the gradients: ")
         optimizer.apply_gradients(zip(all_mean_grads, model.trainable_variables))
+        model_provider.save_model(model, "test_model_"+str(iteration))
     return model
 
 

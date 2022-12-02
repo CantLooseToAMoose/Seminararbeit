@@ -12,6 +12,7 @@ def get_CNN_DNN_model(filters_cnn, kernels_cnn, strides_cnn, layers_dnn, input_s
     cnn = keras.layers.Flatten()(cnn)
     input_concat = keras.layers.Input(input_shape_concat)
     concat = keras.layers.Concatenate()([cnn, input_concat])
+    #WIP add LSTMCELL
     for i in range(len(layers_dnn)):
         concat = keras.layers.Dense(units=layers_dnn[i], activation="relu")(concat)
     concat = keras.layers.Dense(number_of_outputs, activation=keras.activations.softmax)(concat)

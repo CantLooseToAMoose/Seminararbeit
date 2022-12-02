@@ -21,17 +21,16 @@ def breadth_first_search(node_list_of_lists, start, goal):
     visited = []
     queue = []
     queue.append(node_list_of_lists[start[0]][start[1]])
-    node = None
+    visited.append(node_list_of_lists[start[0]][start[1]])
     while len(queue) != 0:
-        prev = node
         node = queue.pop(0)
-        node.previous = prev
         if node == node_list_of_lists[goal[0]][goal[1]]:
             break
-        visited.append(node)
         for neighbour in node.neighbours:
             if neighbour not in visited:
+                neighbour.previous = node
                 queue.append(neighbour)
+                visited.append(neighbour)
     path = []
     while node.previous != None:
         path.append(node.previous)
