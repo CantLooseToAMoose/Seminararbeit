@@ -5,6 +5,7 @@ import time
 import Reinforce
 import model_provider
 import matplotlib.pyplot as plt
+import keras
 
 pm = pixelmap.Pixelmap(50, 50, 10)
 
@@ -38,7 +39,7 @@ model = model_provider.get_CNN_DNN_model(filters_cnn=[100, 50, 10], kernels_cnn=
                                          layers_dnn=[200, 100], input_shape_cnn=[10, 10, 1], input_shape_concat=[2],
                                          number_of_outputs=4)
 
-model = model_provider.load_model("test_model_2")
+keras.utils.plot_model(model, "my_first_model_with_shape_info.png", show_shapes=True)
 print(model.summary())
 trained_model = Reinforce.start_training(env=environment, model=model, n_iterations=50, n_episodes_per_update=20)
 

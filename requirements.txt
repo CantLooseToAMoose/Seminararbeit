@@ -1,2 +1,4 @@
 pygame
 tensorflow
+pydot
+graphviz
